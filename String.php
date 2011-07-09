@@ -46,8 +46,10 @@ class Phuture_String implements ArrayAccess, Countable
         $this->_value[$index] = strval($value);
     }
 
-    // TODO actually remove the char
-    function delete($index) {}
+    function delete($index) {
+        $this->_value = substr($this->_value, 0, $index) .
+                        substr($this->_value, $index + 1);
+    }
 
     function getByte($index) {
         return ord($this->_value[$this->_offset($index)]);
@@ -98,15 +100,18 @@ class Phuture_String implements ArrayAccess, Countable
     // Trimming
 
     function trim($chars = '') {
-        return new self(trim($this->_value, $chars));
+        return new self(empty($chars) ? trim($this->_value)
+                                      : trim($this->_value, $chars));
     }
 
     function ltrim($chars = '') {
-        return new self(ltrim($this->_value, $chars));
+        return new self(empty($chars) ? ltrim($this->_value)
+                                      : ltrim($this->_value, $chars));
     }
 
     function rtrim($chars = '') {
-        return new self(rtrim($this->_value, $chars));
+        return new self(empty($chars) ? rtrim($this->_value)
+                                      : rtrim($this->_value, $chars));
     }
 
     function chop($chars = '') {
