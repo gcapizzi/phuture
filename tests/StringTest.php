@@ -58,6 +58,13 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s(''), $this->string->get(2, -5));
     }
 
+    function testSubstring() {
+        assertEquals(s('rin'), $this->string->substring(2, 3));
+        assertEquals(s('rin'), $this->string->substring(2, -1));
+        assertEquals(s('rin'), $this->string->substring(-4, 3));
+        assertEquals(s('rin'), $this->string->substring(-4, -1));
+    }
+
     function testSet() {
         $this->string->set(1, 'p');
         $this->string->set(-1, 't');
