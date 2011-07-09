@@ -53,8 +53,12 @@ class Phuture_String implements ArrayAccess, Countable
         }
     }
 
-    function substring($from, $length) {
-        return new self(substr($this->_value, $from, $length));
+    function substring($from, $length = null) {
+        if ($length === null) {
+            return new self(substr($this->_value, $from));
+        } else {
+            return new self(substr($this->_value, $from, $length));
+        }
     }
 
     function set($index, $value) {

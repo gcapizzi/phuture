@@ -59,6 +59,9 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     function testSubstring() {
+        assertEquals(s('ring'), $this->string->substring(2));
+        assertEquals(s('ring'), $this->string->substring(-4));
+
         assertEquals(s('rin'), $this->string->substring(2, 3));
         assertEquals(s('rin'), $this->string->substring(2, -1));
         assertEquals(s('rin'), $this->string->substring(-4, 3));
