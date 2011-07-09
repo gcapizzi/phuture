@@ -22,7 +22,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     function testToString() {
-        $this->markTestIncomplete();
+        assertEquals('string', sprintf('%s', $this->string));
     }
 
     function testIsEmpty() {
@@ -55,11 +55,13 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     function testDelete() {
-        $this->markTestIncomplete();
-
-        $this->string->delete(1);
-
+        $this->string->delete(2);
         assertEquals(s('sting'), $this->string);
+
+        $this->setUp();
+        $this->string->delete(0);
+        $this->string->delete(0);
+        assertEquals(s('ring'), $this->string);
     }
 
     function testGetSetByte() {
@@ -74,12 +76,15 @@ class StringTest extends PHPUnit_Framework_TestCase
 
         $this->string[1] = 'p';
         assertEquals(s('spring'), $this->string);
+
+        assertFalse(isset($this->string[10]));
+        assertFalse(isset($this->string[-10]));
+        assertTrue(isset($this->string[3]));
+        assertTrue(isset($this->string[-3]));
     }
 
     function testUnset() {
-        $this->markTestIncomplete();
-
-        unset($this->string[1]);
+        unset($this->string[2]);
 
         assertEquals(s('sting'), $this->string);
     }
@@ -102,5 +107,35 @@ class StringTest extends PHPUnit_Framework_TestCase
     function testRepeat() {
         assertEquals(s('stringstringstring'), $this->string->repeat(3));
         assertEquals(s(''), $this->string->repeat(0));
+    }
+
+    function testTrim() {
+        $s1 = s("\t   string   \n");
+        assertEquals(s('string'), $s1->trim());
+
+        $s2 = s('--- string ---');
+        assertEquals(s('string'), $s2->trim('- '));
+        assertEquals(s('string'), $s2->trim(s('- ')));
+    }
+
+    function testLtrim() {
+        $s1 = s("\t   string   \n");
+        assertEquals(s("string   \n"), $s1->ltrim());
+
+        $s2 = s('--- string ---');
+        assertEquals(s('string ---'), $s2->ltrim('- '));
+        assertEquals(s('string ---'), $s2->ltrim(s('- ')));
+    }
+
+    function testRtrimChop() {
+        $s1 = s("\t   string   \n");
+        assertEquals(s("\t   string"), $s1->rtrim());
+        assertEquals(s("\t   string"), $s1->chop());
+
+        $s2 = s('--- string ---');
+        assertEquals(s('--- string'), $s2->rtrim('- '));
+        assertEquals(s('--- string'), $s2->chop('- '));
+        assertEquals(s('--- string'), $s2->rtrim(s('- ')));
+        assertEquals(s('--- string'), $s2->chop(s('- ')));
     }
 }
