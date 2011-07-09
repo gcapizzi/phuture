@@ -55,13 +55,9 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     function testDelete() {
-        $this->string->delete(2);
-        assertEquals(s('sting'), $this->string);
+        assertEquals(s('sting'), $this->string->delete(2));
 
-        $this->setUp();
-        $this->string->delete(0);
-        $this->string->delete(0);
-        assertEquals(s('ring'), $this->string);
+        assertEquals(s('ring'), $this->string->delete(0)->delete(0));
     }
 
     function testGetSetByte() {
@@ -137,5 +133,10 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('--- string'), $s2->chop('- '));
         assertEquals(s('--- string'), $s2->rtrim(s('- ')));
         assertEquals(s('--- string'), $s2->chop(s('- ')));
+    }
+
+    function testInsert() {
+        $this->string->insert(2, 'ee');
+        assertEquals(s('steering'), $this->string->insert(2, 'ee'));
     }
 }

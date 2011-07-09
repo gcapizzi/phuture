@@ -47,8 +47,8 @@ class Phuture_String implements ArrayAccess, Countable
     }
 
     function delete($index) {
-        $this->_value = substr($this->_value, 0, $index) .
-                        substr($this->_value, $index + 1);
+        return new self(substr($this->_value, 0, $index) .
+                        substr($this->_value, $index + 1));
     }
 
     function getByte($index) {
@@ -74,7 +74,7 @@ class Phuture_String implements ArrayAccess, Countable
     }
 
     function offsetUnset($offset) {
-        $this->delete($offset);
+        $this->_value = $this->delete($offset)->getValue();
     }
 
     // Countable
@@ -126,6 +126,11 @@ class Phuture_String implements ArrayAccess, Countable
 
     function repeat($times) {
         return new self(str_repeat($this->_value, $times));
+    }
+
+    function insert($index, $string) {
+        return new self(substr($this->_value, 0, $index) . $string .
+                        substr($this->_value, $index));
     }
 }
 
