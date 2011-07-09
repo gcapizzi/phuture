@@ -115,6 +115,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     function testTrim() {
         $s1 = s("\t   string   \n");
         assertEquals(s('string'), $s1->trim());
+        assertEquals(s("\t   string   \n"), $s1->trim(''));
 
         $s2 = s('--- string ---');
         assertEquals(s('string'), $s2->trim('- '));
@@ -124,6 +125,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     function testLtrim() {
         $s1 = s("\t   string   \n");
         assertEquals(s("string   \n"), $s1->ltrim());
+        assertEquals(s("\t   string   \n"), $s1->ltrim(''));
 
         $s2 = s('--- string ---');
         assertEquals(s('string ---'), $s2->ltrim('- '));
@@ -133,7 +135,9 @@ class StringTest extends PHPUnit_Framework_TestCase
     function testRtrimChop() {
         $s1 = s("\t   string   \n");
         assertEquals(s("\t   string"), $s1->rtrim());
+        assertEquals(s("\t   string   \n"), $s1->rtrim(''));
         assertEquals(s("\t   string"), $s1->chop());
+        assertEquals(s("\t   string   \n"), $s1->chop(''));
 
         $s2 = s('--- string ---');
         assertEquals(s('--- string'), $s2->rtrim('- '));

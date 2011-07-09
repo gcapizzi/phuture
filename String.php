@@ -100,22 +100,22 @@ class Phuture_String implements ArrayAccess, Countable
 
     // Trimming
 
-    function trim($chars = '') {
-        return new self(empty($chars) ? trim($this->_value)
-                                      : trim($this->_value, $chars));
+    function trim($chars = null) {
+        return new self($chars === null ? trim($this->_value)
+                                        : trim($this->_value, $chars));
     }
 
-    function ltrim($chars = '') {
-        return new self(empty($chars) ? ltrim($this->_value)
-                                      : ltrim($this->_value, $chars));
+    function ltrim($chars = null) {
+        return new self($chars === null ? ltrim($this->_value)
+                                        : ltrim($this->_value, $chars));
     }
 
-    function rtrim($chars = '') {
-        return new self(empty($chars) ? rtrim($this->_value)
-                                      : rtrim($this->_value, $chars));
+    function rtrim($chars = null) {
+        return new self($chars === null ? rtrim($this->_value)
+                                        : rtrim($this->_value, $chars));
     }
 
-    function chop($chars = '') {
+    function chop($chars = null) {
         return $this->rtrim($chars);
     }
 
