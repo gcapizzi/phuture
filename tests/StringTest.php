@@ -49,29 +49,34 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     function testGetSet() {
         assertEquals(s('t'), $this->string->get(1));
+        assertEquals(s('t'), $this->string->get(-5));
 
         $this->string->set(1, 'p');
-        assertEquals(s('spring'), $this->string);
+        $this->string->set(-1, 't');
+        assertEquals(s('sprint'), $this->string);
     }
 
     function testDelete() {
         assertEquals(s('sting'), $this->string->delete(2));
-
-        assertEquals(s('ring'), $this->string->delete(0)->delete(0));
+        assertEquals(s('sting'), $this->string->delete(-4));
     }
 
     function testGetSetByte() {
         assertEquals(116, $this->string->getByte(1));
+        assertEquals(116, $this->string->getByte(-5));
 
         $this->string->setByte(1, 112);
-        assertEquals(s('spring'), $this->string);
+        $this->string->setByte(-1, 116);
+        assertEquals(s('sprint'), $this->string);
     }
 
     function testArrayAccess() {
         assertEquals(s('t'), $this->string[1]);
+        assertEquals(s('t'), $this->string[-5]);
 
         $this->string[1] = 'p';
-        assertEquals(s('spring'), $this->string);
+        $this->string[-1] = 't';
+        assertEquals(s('sprint'), $this->string);
 
         assertFalse(isset($this->string[10]));
         assertFalse(isset($this->string[-10]));
@@ -81,8 +86,10 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     function testUnset() {
         unset($this->string[2]);
-
         assertEquals(s('sting'), $this->string);
+
+        unset($this->string[-4]);
+        assertEquals(s('sing'), $this->string);
     }
 
     function testUpperLowercase() {
@@ -136,7 +143,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     function testInsert() {
-        $this->string->insert(2, 'ee');
         assertEquals(s('steering'), $this->string->insert(2, 'ee'));
+        assertEquals(s('steering'), $this->string->insert(-4, 'ee'));
     }
 }

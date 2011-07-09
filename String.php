@@ -43,12 +43,13 @@ class Phuture_String implements ArrayAccess, Countable
     }
 
     function set($index, $value) {
-        $this->_value[$index] = strval($value);
+        $this->_value[$this->_offset($index)] = strval($value);
     }
 
     function delete($index) {
-        return new self(substr($this->_value, 0, $index) .
-                        substr($this->_value, $index + 1));
+        $i = $this->_offset($index);
+        return new self(substr($this->_value, 0, $i) .
+                        substr($this->_value, $i + 1));
     }
 
     function getByte($index) {
