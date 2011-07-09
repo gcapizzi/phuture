@@ -38,8 +38,19 @@ class Phuture_String implements ArrayAccess, Countable
         return $index >= 0 ? $index : $this->length() + $index;
     }
 
-    function get($index) {
-        return new self($this->_value[$this->_offset($index)]);
+    function get($index, $to = null) {
+        if ($to === null) {
+            return new self($this->_value[$this->_offset($index)]);
+        } else {
+            $from = $this->_offset($index);
+            $to   = $this->_offset($to);
+
+            if ($to > $from) {
+                return new self(substr($this->_value, $from, $to - $from + 1));
+            } else {
+                return new self('');
+            }
+        }
     }
 
     function set($index, $value) {

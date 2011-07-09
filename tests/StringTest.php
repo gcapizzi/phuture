@@ -47,10 +47,18 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(6, $this->string->count());
     }
 
-    function testGetSet() {
+    function testGet() {
         assertEquals(s('t'), $this->string->get(1));
         assertEquals(s('t'), $this->string->get(-5));
 
+        assertEquals(s('rin'), $this->string->get(2, 4));
+        assertEquals(s('rin'), $this->string->get(2, -2));
+
+        assertEquals(s(''), $this->string->get(2, 1));
+        assertEquals(s(''), $this->string->get(2, -5));
+    }
+
+    function testSet() {
         $this->string->set(1, 'p');
         $this->string->set(-1, 't');
         assertEquals(s('sprint'), $this->string);
