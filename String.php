@@ -40,7 +40,8 @@ class Phuture_String implements ArrayAccess, Countable
 
     function get($index, $to = null) {
         if ($to === null) {
-            return new self($this->_value[$this->_offset($index)]);
+            // using substr() we can avoid using _offset (slower)
+            return new self(substr($this->_value, $index, 1));
         } else {
             $from = $this->_offset($index);
             $to   = $this->_offset($to);
