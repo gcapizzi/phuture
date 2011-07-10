@@ -48,14 +48,20 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     function testGet() {
-        assertEquals(s('t'), $this->string->get(1));
-        assertEquals(s('t'), $this->string->get(-5));
+        assertEquals(s('r'), $this->string->get(2));
+        assertEquals(s('r'), $this->string->get(-4));
 
         assertEquals(s('rin'), $this->string->get(2, 4));
         assertEquals(s('rin'), $this->string->get(2, -2));
 
         assertEquals(s(''), $this->string->get(2, 1));
         assertEquals(s(''), $this->string->get(2, -5));
+
+        assertEquals(s('rin'), $this->string->get(-4, 4));
+        assertEquals(s('rin'), $this->string->get(-4, -2));
+
+        assertEquals(s(''), $this->string->get(-4, 1));
+        assertEquals(s(''), $this->string->get(-4, -5));
     }
 
     function testSubstring() {
