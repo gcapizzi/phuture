@@ -119,6 +119,10 @@ class Phuture_String implements ArrayAccess, Countable
         return new self(ucfirst($this->_value));
     }
 
+    function capitalizeWords() {
+        return new self(ucwords($this->_value));
+    }
+
     // Trimming
 
     function trim($chars = null) {

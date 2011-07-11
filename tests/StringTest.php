@@ -135,6 +135,13 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('String'), $this->string->capitalize());
     }
 
+    function testCapitalizeWords() {
+        $this->string->setValue('The super-cat is on the table.');
+
+        assertEquals($this->string->capitalizeWords(),
+                     s('The Super-cat Is On The Table.'));
+    }
+
     // Trimming
 
     function testTrim() {
