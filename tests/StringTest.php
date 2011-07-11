@@ -32,6 +32,10 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertTrue($this->string->isEmpty());
     }
 
+    function testLength() {
+        assertEquals(6, $this->string->length());
+    }
+
     function testClear() {
         assertNotEquals(s(''), $this->string);
 
@@ -39,13 +43,7 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s(''), $this->string);
     }
 
-    function testLength() {
-        assertEquals(6, $this->string->length());
-    }
-
-    function testCount() {
-        assertEquals(6, $this->string->count());
-    }
+    // Access
 
     function testGet() {
         assertEquals(s('r'), $this->string->get(2));
@@ -62,16 +60,6 @@ class StringTest extends PHPUnit_Framework_TestCase
 
         assertEquals(s(''), $this->string->get(-4, 1));
         assertEquals(s(''), $this->string->get(-4, -5));
-    }
-
-    function testSubstring() {
-        assertEquals(s('ring'), $this->string->substring(2));
-        assertEquals(s('ring'), $this->string->substring(-4));
-
-        assertEquals(s('rin'), $this->string->substring(2, 3));
-        assertEquals(s('rin'), $this->string->substring(2, -1));
-        assertEquals(s('rin'), $this->string->substring(-4, 3));
-        assertEquals(s('rin'), $this->string->substring(-4, -1));
     }
 
     function testSet() {
@@ -93,6 +81,18 @@ class StringTest extends PHPUnit_Framework_TestCase
         $this->string->setByte(-1, 116);
         assertEquals(s('sprint'), $this->string);
     }
+
+    function testSubstring() {
+        assertEquals(s('ring'), $this->string->substring(2));
+        assertEquals(s('ring'), $this->string->substring(-4));
+
+        assertEquals(s('rin'), $this->string->substring(2, 3));
+        assertEquals(s('rin'), $this->string->substring(2, -1));
+        assertEquals(s('rin'), $this->string->substring(-4, 3));
+        assertEquals(s('rin'), $this->string->substring(-4, -1));
+    }
+
+    // ArrayAccess interface
 
     function testArrayAccess() {
         assertEquals(s('t'), $this->string[1]);
@@ -116,6 +116,14 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('sing'), $this->string);
     }
 
+    // Countable interface
+
+    function testCount() {
+        assertEquals(6, $this->string->count());
+    }
+
+    // Case manipulation
+
     function testUpperLowercase() {
         $this->string->setValue('sTrinG');
 
@@ -127,14 +135,7 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('String'), $this->string->capitalize());
     }
 
-    function testReverse() {
-        assertEquals(s('gnirts'), $this->string->reverse());
-    }
-
-    function testRepeat() {
-        assertEquals(s('stringstringstring'), $this->string->repeat(3));
-        assertEquals(s(''), $this->string->repeat(0));
-    }
+    // Trimming
 
     function testTrim() {
         $s1 = s("\t   string   \n");
@@ -168,6 +169,17 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('--- string'), $s2->chop('- '));
         assertEquals(s('--- string'), $s2->rtrim(s('- ')));
         assertEquals(s('--- string'), $s2->chop(s('- ')));
+    }
+
+    // Other manipulation functions
+
+    function testReverse() {
+        assertEquals(s('gnirts'), $this->string->reverse());
+    }
+
+    function testRepeat() {
+        assertEquals(s('stringstringstring'), $this->string->repeat(3));
+        assertEquals(s(''), $this->string->repeat(0));
     }
 
     function testInsert() {

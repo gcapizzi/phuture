@@ -55,14 +55,6 @@ class Phuture_String implements ArrayAccess, Countable
         }
     }
 
-    function substring($from, $length = null) {
-        if ($length === null) {
-            return new self(substr($this->_value, $from));
-        } else {
-            return new self(substr($this->_value, $from, $length));
-        }
-    }
-
     function set($index, $value) {
         $this->_value[$this->_offset($index)] = strval($value);
     }
@@ -79,6 +71,14 @@ class Phuture_String implements ArrayAccess, Countable
 
     function setByte($index, $value) {
         $this->_value[$this->_offset($index)] = chr($value);
+    }
+
+    function substring($from, $length = null) {
+        if ($length === null) {
+            return new self(substr($this->_value, $from));
+        } else {
+            return new self(substr($this->_value, $from, $length));
+        }
     }
 
     // ArrayAccess
@@ -140,7 +140,7 @@ class Phuture_String implements ArrayAccess, Countable
         return $this->rtrim($chars);
     }
 
-    // Other String manipulation functions
+    // Other manipulation functions
 
     function reverse() {
         return new self(strrev($this->_value));
