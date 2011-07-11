@@ -138,8 +138,8 @@ class StringTest extends PHPUnit_Framework_TestCase
     function testCapitalizeWords() {
         $this->string->setValue('The super-cat is on the table.');
 
-        assertEquals($this->string->capitalizeWords(),
-                     s('The Super-cat Is On The Table.'));
+        assertEquals(s('The Super-cat Is On The Table.'),
+                     $this->string->capitalizeWords());
     }
 
     // Trimming
