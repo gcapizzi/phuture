@@ -47,7 +47,8 @@ class Phuture_String implements ArrayAccess, Countable
             $to   = $this->_offset($to);
 
             if ($to > $from) {
-                return new self(substr($this->_value, $from, $to - $from + 1));
+                return new self(substr($this->_value, $from,
+                                       $to - $from + 1));
             } else {
                 return new self('');
             }
