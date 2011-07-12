@@ -142,6 +142,12 @@ class StringTest extends PHPUnit_Framework_TestCase
                      $this->string->capitalizeWords());
     }
 
+    function testSwapCase() {
+        $this->string->setValue('sTr1nG');
+
+        assertEquals(s('StR1Ng'), $this->string->swapCase());
+    }
+
     // Trimming
 
     function testTrim() {

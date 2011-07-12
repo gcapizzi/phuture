@@ -123,6 +123,18 @@ class Phuture_String implements ArrayAccess, Countable
         return new self(ucwords($this->_value));
     }
 
+    function swapCase() {
+        $result = '';
+
+        for ($i = 0; $i < strlen($this->_value); $i++) {
+            $char = $this->_value[$i];
+            $result .= ctype_upper($char) ? strtolower($char)
+                                          : strtoupper($char);
+        }
+
+        return new self($result);
+    }
+
     // Trimming
 
     function trim($chars = null) {
