@@ -148,6 +148,48 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('StR1Ng'), $this->string->swapCase());
     }
 
+    // String type
+
+    function testIsUppercase() {
+        assertTrue(s('STRING')->isUppercase());
+        // assertTrue(s('STR1NG')->isUppercase());
+        assertFalse(s('sTrinG')->isUppercase());
+        // assertTrue(s('ST ING')->isUppercase());
+    }
+
+    function testIsLowercase() {
+        assertTrue(s('string')->isLowercase());
+        // assertTrue(s('str1ng')->isLowercase());
+        assertFalse(s('sTrinG')->isLowercase());
+        // assertTrue(s('st ing')->isLowercase());
+    }
+
+    function testIsAlphanumeric() {
+        assertTrue(s('string')->isAlphanumeric());
+        assertTrue(s('123456')->isAlphanumeric());
+        assertTrue(s('sTr1nG')->isAlphanumeric());
+        assertFalse(s('st ing')->isAlphanumeric());
+        assertFalse(s('sT-1nG')->isAlphanumeric());
+    }
+
+    function testIsAlpha() {
+        assertTrue(s('string')->isAlpha());
+        assertFalse(s('sTr1nG')->isAlpha());
+        assertFalse(s('st ing')->isAlpha());
+    }
+
+    function testIsNumeric() {
+        assertTrue(s('123456')->isNumeric());
+        assertFalse(s('string')->isNumeric());
+        assertFalse(s('sTr1nG')->isNumeric());
+    }
+
+    function testIsSpace() {
+        assertTrue(s('   ')->isSpace());
+        assertFalse(s('string')->isSpace());
+        assertFalse(s('st ing')->isSpace());
+    }
+
     // Trimming
 
     function testTrim() {

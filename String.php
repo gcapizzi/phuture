@@ -135,6 +135,15 @@ class Phuture_String implements ArrayAccess, Countable
         return new self($result);
     }
 
+    // String type
+
+    function isUppercase()    { return ctype_upper($this->_value); }
+    function isLowercase()    { return ctype_lower($this->_value); }
+    function isAlphanumeric() { return ctype_alnum($this->_value); }
+    function isAlpha()        { return ctype_alpha($this->_value); }
+    function isNumeric()      { return ctype_digit($this->_value); }
+    function isSpace()        { return ctype_space($this->_value); }
+
     // Trimming
 
     function trim($chars = null) {
