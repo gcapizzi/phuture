@@ -226,6 +226,22 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('--- string'), $s2->chop(s('- ')));
     }
 
+    // String content
+
+    function testStartsWith() {
+        assertTrue($this->string->startsWith('str'));
+        assertTrue($this->string->startsWith(s('str')));
+        assertFalse($this->string->startsWith('tri'));
+        assertFalse($this->string->startsWith(s('tri')));
+    }
+
+    function testEndsWith() {
+        assertTrue($this->string->endsWith('ing'));
+        assertTrue($this->string->endsWith(s('ing')));
+        assertFalse($this->string->endsWith('rin'));
+        assertFalse($this->string->endsWith(s('rin')));
+    }
+
     // Other manipulation functions
 
     function testReverse() {

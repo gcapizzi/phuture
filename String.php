@@ -165,6 +165,16 @@ class Phuture_String implements ArrayAccess, Countable
         return $this->rtrim($chars);
     }
 
+    // String content
+
+    function startsWith($start) {
+        return substr($this->_value, 0, strlen($start)) == $start;
+    }
+
+    function endsWith($end) {
+        return substr($this->_value, $this->length() - strlen($end)) == $end;
+    }
+
     // Other manipulation functions
 
     function reverse() {
