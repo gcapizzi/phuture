@@ -253,6 +253,18 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertFalse($this->string->endsWith(s('rin')));
     }
 
+    // Replacement
+
+    function testReplace() {
+        assertEquals(s('playing'), $this->string->replace('str', 'play'));
+    }
+
+    function testCaseReplace() {
+        assertEquals(s('playing'), $this->string->caseReplace('str', 'play'));
+        $this->string = s('sTrinG');
+        assertEquals(s('playinG'), $this->string->caseReplace('str', 'play'));
+    }
+
     // Other manipulation functions
 
     function testReverse() {

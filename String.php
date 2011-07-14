@@ -185,6 +185,15 @@ class Phuture_String implements ArrayAccess, Countable
         return substr($this->_value, $this->length() - strlen($end)) == $end;
     }
 
+    // Replacement
+    function replace($old, $new) {
+        return new self(str_replace($old, $new, $this->_value));
+    }
+
+    function caseReplace($old, $new) {
+        return new self(str_ireplace($old, $new, $this->_value));
+    }
+
     // Other manipulation functions
 
     function reverse() {
