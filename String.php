@@ -186,12 +186,34 @@ class Phuture_String implements ArrayAccess, Countable
     }
 
     // Replacement
+
     function replace($old, $new) {
         return new self(str_replace($old, $new, $this->_value));
     }
 
     function caseReplace($old, $new) {
         return new self(str_ireplace($old, $new, $this->_value));
+    }
+
+    // Padding
+
+    function padLeft($length, $string = ' ') {
+        return new self(str_pad($this->_value, $length, $string,
+                                STR_PAD_LEFT));
+    }
+
+    function padRight($length, $string = ' ') {
+        return new self(str_pad($this->_value, $length, $string,
+                                STR_PAD_RIGHT));
+    }
+
+    function padBoth($length, $string = ' ') {
+        return new self(str_pad($this->_value, $length, $string,
+                                STR_PAD_BOTH));
+    }
+
+    function center($length, $string = ' ') {
+        return $this->padBoth($length, $string);
     }
 
     // Other manipulation functions

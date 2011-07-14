@@ -267,6 +267,30 @@ class StringTest extends PHPUnit_Framework_TestCase
                                                            ''));
     }
 
+    // Padding
+
+    function testPadLeft() {
+        assertEquals(s('    string'), $this->string->padLeft(10));
+        assertEquals(s('-=-=string'), $this->string->padLeft(10, '-='));
+        assertEquals(s('-=-=-string'), $this->string->padLeft(11, '-='));
+    }
+
+    function testPadRight() {
+        assertEquals(s('string    '), $this->string->padRight(10));
+        assertEquals(s('string-=-='), $this->string->padRight(10, '-='));
+        assertEquals(s('string-=-=-'), $this->string->padRight(11, '-='));
+    }
+
+    function testPadBothCenter() {
+        assertEquals(s('  string  '), $this->string->padBoth(10));
+        assertEquals(s('-=string-='), $this->string->padBoth(10, '-='));
+        assertEquals(s('-=string-=-'), $this->string->padBoth(11, '-='));
+
+        assertEquals(s('  string  '), $this->string->center(10));
+        assertEquals(s('-=string-='), $this->string->center(10, '-='));
+        assertEquals(s('-=string-=-'), $this->string->center(11, '-='));
+    }
+
     // Other manipulation functions
 
     function testReverse() {
