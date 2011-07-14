@@ -257,12 +257,14 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     function testReplace() {
         assertEquals(s('playing'), $this->string->replace('str', 'play'));
+        assertEquals(s('ring'), $this->string->replace(array('s', 't'), ''));
     }
 
     function testCaseReplace() {
-        assertEquals(s('playing'), $this->string->caseReplace('str', 'play'));
         $this->string = s('sTrinG');
         assertEquals(s('playinG'), $this->string->caseReplace('str', 'play'));
+        assertEquals(s('rinG'), $this->string->casereplace(array('s', 't'),
+                                                           ''));
     }
 
     // Other manipulation functions
