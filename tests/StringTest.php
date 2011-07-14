@@ -122,6 +122,17 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(6, $this->string->count());
     }
 
+    // Concatenation
+
+    function testAppend() {
+        assertEquals(s('stringalicious'), $this->string->append('alicious'));
+    }
+
+    function testPrepend() {
+        $this->string->setValue('alicious');
+        assertEquals(s('stringalicious'), $this->string->prepend('string'));
+    }
+
     // Case manipulation
 
     function testUpperLowercase() {

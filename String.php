@@ -99,10 +99,20 @@ class Phuture_String implements ArrayAccess, Countable
         $this->_value = $this->delete($offset)->getValue();
     }
 
-    // Countable
+    // Countable interface
 
     function count() {
         return $this->length();
+    }
+
+    // Concatenation
+
+    function append($suffix) {
+        return new self($this->_value . $suffix);
+    }
+
+    function prepend($prefix) {
+        return new self($prefix . $this->_value);
     }
 
     // Case manipulation
