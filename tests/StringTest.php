@@ -282,4 +282,8 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('steering'), $this->string->insert(2, 'ee'));
         assertEquals(s('steering'), $this->string->insert(-4, 'ee'));
     }
+
+    function testJoin() {
+        assertEquals($this->string, s('r')->join(array('st', 'ing')));
+    }
 }

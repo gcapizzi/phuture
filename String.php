@@ -208,6 +208,10 @@ class Phuture_String implements ArrayAccess, Countable
         return new self(substr($this->_value, 0, $index) . $string .
                         substr($this->_value, $index));
     }
+
+    function join($pieces) {
+        return new self(implode($this->_value, $pieces));
+    }
 }
 
 function s($string) { return new Phuture_String($string); }
