@@ -253,6 +253,11 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertFalse($this->string->endsWith(s('rin')));
     }
 
+    function testFind() {
+        assertEquals(2, $this->string->find('ring'));
+        assertEquals(-1, $this->string->find('no'));
+    }
+
     // Replacement
 
     function testReplace() {

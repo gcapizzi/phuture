@@ -185,6 +185,11 @@ class Phuture_String implements ArrayAccess, Countable
         return substr($this->_value, $this->length() - strlen($end)) == $end;
     }
 
+    function find($substring, $offset = 0) {
+        $result = strpos($this->_value, $substring, $offset);
+        return $result === FALSE ? -1 : $result;
+    }
+
     // Replacement
 
     function replace($old, $new) {
