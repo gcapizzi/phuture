@@ -190,6 +190,11 @@ class Phuture_String implements ArrayAccess, Countable
         return $result === FALSE ? -1 : $result;
     }
 
+    function caseFind($substring, $offset = 0) {
+        $result = stripos($this->_value, $substring, $offset);
+        return $result === FALSE ? -1 : $result;
+    }
+
     // Replacement
 
     function replace($old, $new) {

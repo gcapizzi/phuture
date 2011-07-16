@@ -258,6 +258,12 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(-1, $this->string->find('no'));
     }
 
+    function testCaseFind() {
+        assertEquals(2, $this->string->caseFind('ring'));
+        assertEquals(2, $this->string->caseFind('rInG'));
+        assertEquals(-1, $this->string->caseFind('no'));
+    }
+
     // Replacement
 
     function testReplace() {
