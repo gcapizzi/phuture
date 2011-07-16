@@ -178,7 +178,7 @@ class Phuture_String implements ArrayAccess, Countable
     // String content
 
     function startsWith($start) {
-        return substr($this->_value, 0, strlen($start)) == $start;
+        return strpos($this->_value, strval($start)) === 0;
     }
 
     function endsWith($end) {
