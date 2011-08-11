@@ -193,6 +193,14 @@ class Phuture_String implements ArrayAccess, Countable
         return stripos($this->_value, $substring, $offset);
     }
 
+    function findRight($substring, $offset = 0) {
+        return strrpos($this->_value, $substring, $offset);
+    }
+
+    function caseFindRight($substring, $offset = 0) {
+        return strripos($this->_value, $substring, $offset);
+    }
+
     // Replacement
 
     function replace($old, $new) {

@@ -254,14 +254,29 @@ class StringTest extends PHPUnit_Framework_TestCase
     }
 
     function testFind() {
+        $this->string->setValue("string with a ring");
         assertEquals(2, $this->string->find('ring'));
         assertEquals(false, $this->string->find('no'));
     }
 
     function testCaseFind() {
+        $this->string->setValue("string with a ring");
         assertEquals(2, $this->string->caseFind('ring'));
         assertEquals(2, $this->string->caseFind('rInG'));
         assertEquals(false, $this->string->caseFind('no'));
+    }
+
+    function testFindRight() {
+        $this->string->setValue("string with a ring");
+        assertEquals(14, $this->string->findRight('ring'));
+        assertEquals(false, $this->string->findRight('no'));
+    }
+
+    function testCaseFindRight() {
+        $this->string->setValue("string with a ring");
+        assertEquals(14, $this->string->caseFindRight('ring'));
+        assertEquals(14, $this->string->caseFindRight('rInG'));
+        assertEquals(false, $this->string->caseFindRight('no'));
     }
 
     // Replacement
