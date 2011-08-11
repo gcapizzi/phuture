@@ -213,27 +213,27 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('string'), $this->string->trim(s('- ')));
     }
 
-    function testLtrim() {
+    function testTrimLeft() {
         $this->string->setValue("\t   string   \n");
-        assertEquals(s("string   \n"), $this->string->ltrim());
-        assertEquals(s("\t   string   \n"), $this->string->ltrim(''));
+        assertEquals(s("string   \n"), $this->string->trimLeft());
+        assertEquals(s("\t   string   \n"), $this->string->trimLeft(''));
 
         $this->string->setValue('--- string ---');
-        assertEquals(s('string ---'), $this->string->ltrim('- '));
-        assertEquals(s('string ---'), $this->string->ltrim(s('- ')));
+        assertEquals(s('string ---'), $this->string->trimLeft('- '));
+        assertEquals(s('string ---'), $this->string->trimLeft(s('- ')));
     }
 
-    function testRtrimChop() {
+    function testTrimRightChop() {
         $this->string->setValue("\t   string   \n");
-        assertEquals(s("\t   string"), $this->string->rtrim());
-        assertEquals(s("\t   string   \n"), $this->string->rtrim(''));
+        assertEquals(s("\t   string"), $this->string->trimRight());
+        assertEquals(s("\t   string   \n"), $this->string->trimRight(''));
         assertEquals(s("\t   string"), $this->string->chop());
         assertEquals(s("\t   string   \n"), $this->string->chop(''));
 
         $this->string->setValue('--- string ---');
-        assertEquals(s('--- string'), $this->string->rtrim('- '));
+        assertEquals(s('--- string'), $this->string->trimRight('- '));
         assertEquals(s('--- string'), $this->string->chop('- '));
-        assertEquals(s('--- string'), $this->string->rtrim(s('- ')));
+        assertEquals(s('--- string'), $this->string->trimRight(s('- ')));
         assertEquals(s('--- string'), $this->string->chop(s('- ')));
     }
 

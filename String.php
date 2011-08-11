@@ -161,18 +161,18 @@ class Phuture_String implements ArrayAccess, Countable
                                         : trim($this->_value, $chars));
     }
 
-    function ltrim($chars = null) {
+    function trimLeft($chars = null) {
         return new self($chars === null ? ltrim($this->_value)
                                         : ltrim($this->_value, $chars));
     }
 
-    function rtrim($chars = null) {
+    function trimRight($chars = null) {
         return new self($chars === null ? rtrim($this->_value)
                                         : rtrim($this->_value, $chars));
     }
 
     function chop($chars = null) {
-        return $this->rtrim($chars);
+        return $this->trimRight($chars);
     }
 
     // String content
