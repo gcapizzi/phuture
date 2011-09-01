@@ -163,16 +163,18 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     function testIsUppercase() {
         assertTrue(s('STRING')->isUppercase());
-        // assertTrue(s('STR1NG')->isUppercase());
+        assertTrue(s('STR1NG')->isUppercase());
+        assertTrue(s('ST ING')->isUppercase());
         assertFalse(s('sTrinG')->isUppercase());
-        // assertTrue(s('ST ING')->isUppercase());
+        assertFalse(s('123456')->isUppercase());
     }
 
     function testIsLowercase() {
         assertTrue(s('string')->isLowercase());
-        // assertTrue(s('str1ng')->isLowercase());
+        assertTrue(s('str1ng')->isLowercase());
+        assertTrue(s('st ing')->isLowercase());
         assertFalse(s('sTrinG')->isLowercase());
-        // assertTrue(s('st ing')->isLowercase());
+        assertFalse(s('123456')->isLowercase());
     }
 
     function testIsAlphanumeric() {

@@ -147,8 +147,46 @@ class Phuture_String implements ArrayAccess, Countable
 
     // String type
 
-    function isUppercase()    { return ctype_upper($this->_value); }
-    function isLowercase()    { return ctype_lower($this->_value); }
+    function isUppercase() {
+        // Shortcuts
+        if ($this->length() == 0) { return false; }
+        if ($this->length() == 1 || $this->isAlpha()) {
+            return ctype_upper($this->_value);
+        }
+
+        $cased = false;
+        for ($i = 0; $i < strlen($this->_value); $i++) {
+            $char = $this->_value[$i];
+
+            if (ctype_lower($char)) {
+                return false;
+            } else if (!$cased && ctype_upper($char)) {
+                $cased = true;
+            }
+        }
+        return $cased;
+    }
+
+    function isLowercase() {
+        // Shortcuts
+        if ($this->length() == 0) { return false; }
+        if ($this->length() == 1 || $this->isAlpha()) {
+            return ctype_lower($this->_value);
+        }
+
+        $cased = false;
+        for ($i = 0; $i < strlen($this->_value); $i++) {
+            $char = $this->_value[$i];
+
+            if (ctype_upper($char)) {
+                return false;
+            } else if (!$cased && ctype_lower($char)) {
+                $cased = true;
+            }
+        }
+        return $cased;
+    }
+
     function isAlphanumeric() { return ctype_alnum($this->_value); }
     function isAlpha()        { return ctype_alpha($this->_value); }
     function isNumeric()      { return ctype_digit($this->_value); }
