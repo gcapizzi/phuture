@@ -17,7 +17,9 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     function testGetSetValue() {
         $this->string->setValue('new_string');
+        assertEquals('new_string', $this->string->getValue());
 
+        $this->string->setValue(s('new_string'));
         assertEquals('new_string', $this->string->getValue());
     }
 
@@ -64,8 +66,10 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     function testSet() {
         $this->string->set(1, 'p');
-        $this->string->set(-1, 't');
+        $this->string->set(-1, s('t'));
         assertEquals(s('sprint'), $this->string);
+        $this->string->set(3, 1);
+        assertEquals(s('spr1nt'), $this->string);
     }
 
     function testDelete() {
@@ -99,7 +103,7 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals(s('t'), $this->string[-5]);
 
         $this->string[1] = 'p';
-        $this->string[-1] = 't';
+        $this->string[-1] = s('t');
         assertEquals(s('sprint'), $this->string);
 
         assertFalse(isset($this->string[10]));
@@ -125,12 +129,14 @@ class StringTest extends PHPUnit_Framework_TestCase
     // Concatenation
 
     function testAppend() {
-        assertEquals(s('stringalicious'), $this->string->append('alicious'));
+        assertEquals(s('stringybark'), $this->string->append('ybark'));
+        assertEquals(s('stringybark'), $this->string->append(s('ybark')));
     }
 
     function testPrepend() {
-        $this->string->setValue('alicious');
-        assertEquals(s('stringalicious'), $this->string->prepend('string'));
+        $this->string->setValue('ybark');
+        assertEquals(s('stringybark'), $this->string->prepend('string'));
+        assertEquals(s('stringybark'), $this->string->prepend(s('string')));
     }
 
     // Case manipulation
@@ -258,33 +264,45 @@ class StringTest extends PHPUnit_Framework_TestCase
     function testFind() {
         $this->string->setValue("string with a ring");
         assertEquals(2, $this->string->find('ring'));
+        assertEquals(2, $this->string->find(s('ring')));
         assertEquals(false, $this->string->find('no'));
+        assertEquals(false, $this->string->find(s('no')));
     }
 
     function testCaseFind() {
         $this->string->setValue("string with a ring");
         assertEquals(2, $this->string->caseFind('ring'));
+        assertEquals(2, $this->string->caseFind(s('ring')));
         assertEquals(2, $this->string->caseFind('rInG'));
+        assertEquals(2, $this->string->caseFind(s('rInG')));
         assertEquals(false, $this->string->caseFind('no'));
+        assertEquals(false, $this->string->caseFind(s('no')));
     }
 
     function testFindRight() {
         $this->string->setValue("string with a ring");
         assertEquals(14, $this->string->findRight('ring'));
+        assertEquals(14, $this->string->findRight(s('ring')));
         assertEquals(false, $this->string->findRight('no'));
+        assertEquals(false, $this->string->findRight(s('no')));
     }
 
     function testCaseFindRight() {
         $this->string->setValue("string with a ring");
         assertEquals(14, $this->string->caseFindRight('ring'));
+        assertEquals(14, $this->string->caseFindRight(s('ring')));
         assertEquals(14, $this->string->caseFindRight('rInG'));
+        assertEquals(14, $this->string->caseFindRight(s('rInG')));
         assertEquals(false, $this->string->caseFindRight('no'));
+        assertEquals(false, $this->string->caseFindRight(s('no')));
     }
 
     // Replacement
 
     function testReplace() {
         assertEquals(s('playing'), $this->string->replace('str', 'play'));
+        assertEquals(s('playing'), $this->string->replace(s('str'), 'play'));
+        assertEquals(s('playing'), $this->string->replace(s('str'), s('play')));
         assertEquals(s('ring'), $this->string->replace(array('s', 't'), ''));
     }
 
@@ -300,23 +318,31 @@ class StringTest extends PHPUnit_Framework_TestCase
     function testPadLeft() {
         assertEquals(s('    string'), $this->string->padLeft(10));
         assertEquals(s('-=-=string'), $this->string->padLeft(10, '-='));
+        assertEquals(s('-=-=string'), $this->string->padLeft(10, s('-=')));
         assertEquals(s('-=-=-string'), $this->string->padLeft(11, '-='));
+        assertEquals(s('-=-=-string'), $this->string->padLeft(11, s('-=')));
     }
 
     function testPadRight() {
         assertEquals(s('string    '), $this->string->padRight(10));
         assertEquals(s('string-=-='), $this->string->padRight(10, '-='));
+        assertEquals(s('string-=-='), $this->string->padRight(10, s('-=')));
         assertEquals(s('string-=-=-'), $this->string->padRight(11, '-='));
+        assertEquals(s('string-=-=-'), $this->string->padRight(11, s('-=')));
     }
 
     function testPadBothCenter() {
         assertEquals(s('  string  '), $this->string->padBoth(10));
         assertEquals(s('-=string-='), $this->string->padBoth(10, '-='));
+        assertEquals(s('-=string-='), $this->string->padBoth(10, s('-=')));
         assertEquals(s('-=string-=-'), $this->string->padBoth(11, '-='));
+        assertEquals(s('-=string-=-'), $this->string->padBoth(11, s('-=')));
 
         assertEquals(s('  string  '), $this->string->center(10));
         assertEquals(s('-=string-='), $this->string->center(10, '-='));
+        assertEquals(s('-=string-='), $this->string->center(10, s('-=')));
         assertEquals(s('-=string-=-'), $this->string->center(11, '-='));
+        assertEquals(s('-=string-=-'), $this->string->center(11, s('-=')));
     }
 
     // Other manipulation functions
@@ -332,10 +358,14 @@ class StringTest extends PHPUnit_Framework_TestCase
 
     function testInsert() {
         assertEquals(s('steering'), $this->string->insert(2, 'ee'));
+        assertEquals(s('steering'), $this->string->insert(2, s('ee')));
         assertEquals(s('steering'), $this->string->insert(-4, 'ee'));
+        assertEquals(s('steering'), $this->string->insert(-4, s('ee')));
     }
 
     function testJoin() {
         assertEquals($this->string, s('r')->join(array('st', 'ing')));
+        assertEquals($this->string, s('r')->join(array(s('st'), 'ing')));
+        assertEquals($this->string, s('r')->join(array(s('st'), s('ing'))));
     }
 }

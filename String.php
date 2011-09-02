@@ -56,7 +56,7 @@ class Phuture_String implements ArrayAccess, Countable
     }
 
     function set($index, $value) {
-        $this->_value[$this->_offset($index)] = strval($value);
+        $this->_value[$this->_offset($index)] = $value;
     }
 
     function delete($index) {
@@ -224,19 +224,19 @@ class Phuture_String implements ArrayAccess, Countable
     }
 
     function find($substring, $offset = 0) {
-        return strpos($this->_value, $substring, $offset);
+        return strpos($this->_value, strval($substring), $offset);
     }
 
     function caseFind($substring, $offset = 0) {
-        return stripos($this->_value, $substring, $offset);
+        return stripos($this->_value, strval($substring), $offset);
     }
 
     function findRight($substring, $offset = 0) {
-        return strrpos($this->_value, $substring, $offset);
+        return strrpos($this->_value, strval($substring), $offset);
     }
 
     function caseFindRight($substring, $offset = 0) {
-        return strripos($this->_value, $substring, $offset);
+        return strripos($this->_value, strval($substring), $offset);
     }
 
     // Replacement
