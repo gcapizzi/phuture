@@ -368,4 +368,34 @@ class StringTest extends PHPUnit_Framework_TestCase
         assertEquals($this->string, s('r')->join(array(s('st'), 'ing')));
         assertEquals($this->string, s('r')->join(array(s('st'), s('ing'))));
     }
+
+    // String comparison
+
+    function testCompareTo() {
+        $alice1 = s('Alice');
+        $alice2 = 'Alice';
+        $bob1 = s('Bob');
+        $bob2 = s('bob');
+
+        assertEquals(0, $alice1->compareTo($alice2));
+        assertEquals(-1, $alice1->compareTo($bob1));
+        assertEquals(-1, $bob1->compareTo($bob2));
+        assertEquals(1, $bob1->compareTo($alice1));
+        assertEquals(1, $bob2->compareTo($bob1));
+    }
+
+    function testCaseCompareTo() {
+        $alice1 = s('Alice');
+        $alice2 = s('alice');
+        $bob1 = s('Bob');
+        $bob2 = s('bob');
+        $bob3 = 'bob';
+
+        assertEquals(0, $alice1->caseCompareTo($alice2));
+        assertEquals(-1, $alice2->caseCompareTo($bob1));
+        assertEquals(-1, $alice2->caseCompareTo($bob2));
+        assertEquals(-1, $alice2->caseCompareTo($bob3));
+        assertEquals(1, $bob1->caseCompareTo($alice1));
+        assertEquals(1, $bob2->caseCompareTo($alice1));
+    }
 }

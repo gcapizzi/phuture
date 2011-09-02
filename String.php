@@ -288,6 +288,18 @@ class Phuture_String implements ArrayAccess, Countable
     function join($pieces) {
         return new self(implode($this->_value, $pieces));
     }
+
+    // String comparison
+
+    function compareTo($other) {
+        $cmp = strcmp($this, $other);
+        return $cmp === 0 ? 0 : ($cmp < 0 ? -1 : 1);
+    }
+
+    function caseCompareTo($other) {
+        $cmp = strcasecmp($this, $other);
+        return $cmp === 0 ? 0 : ($cmp < 0 ? -1 : 1);
+    }
 }
 
 function s($string) { return new Phuture_String($string); }
