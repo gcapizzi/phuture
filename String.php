@@ -136,7 +136,8 @@ class Phuture_String implements ArrayAccess, Countable
     function swapCase() {
         $result = '';
 
-        for ($i = 0; $i < strlen($this->_value); $i++) {
+        $length = strlen($this->_value);
+        for ($i = 0; $i < $length; $i++) {
             $char = $this->_value[$i];
             $result .= ctype_upper($char) ? strtolower($char)
                                           : strtoupper($char);
@@ -155,7 +156,8 @@ class Phuture_String implements ArrayAccess, Countable
         }
 
         $cased = false;
-        for ($i = 0; $i < strlen($this->_value); $i++) {
+        $length = strlen($this->_value);
+        for ($i = 0; $i < $length; $i++) {
             $char = $this->_value[$i];
 
             if (ctype_lower($char)) {
@@ -175,7 +177,8 @@ class Phuture_String implements ArrayAccess, Countable
         }
 
         $cased = false;
-        for ($i = 0; $i < strlen($this->_value); $i++) {
+        $length = strlen($this->_value);
+        for ($i = 0; $i < $length; $i++) {
             $char = $this->_value[$i];
 
             if (ctype_upper($char)) {
